@@ -8,10 +8,26 @@ on:
       - opened
       - synchronize
       - reopened
+  workflow_dispatch:  # Permite execução manual do workflow
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout repository
@@ -36,3 +52,10 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Run test
+        run: ./gradlew test
+        env:
+          DB_URL: jdbc:postgresql://localhost:5432/test_db
+          DB_USERNAME: test_user
+          DB_PASSWORD: test_password
