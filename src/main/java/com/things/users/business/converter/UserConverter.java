@@ -14,6 +14,7 @@ public class UserConverter {
                 .firstName(userEntity.getFirstName())
                 .lastName(userEntity.getLastName())
                 .email(userEntity.getEmail())
+                .createAt(userEntity.getCreateAt())
                 .build();
     }
 

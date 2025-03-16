@@ -3,6 +3,8 @@ package com.things.users.business.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,4 +14,5 @@ public class UserResponseDTO {
     private String firstName;
     private String lastName;
     private String email;
+    private LocalDateTime createAt;
 }

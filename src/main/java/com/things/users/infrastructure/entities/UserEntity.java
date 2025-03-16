@@ -36,7 +36,7 @@ public class UserEntity {
     private String password;
 
     @Column(name = "create_at", nullable = false, updatable = false)
-    private LocalDateTime createAt;
+        private LocalDateTime createAt;
 
     @PrePersist
     protected void onCreate() {
