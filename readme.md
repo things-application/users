@@ -1,0 +1,1 @@
+[![PR Workflow](https://github.com/things-application/users/actions/workflows/gradle.yml/badge.svg)](https://github.com/things-application/users/actions/workflows/gradle.yml)
