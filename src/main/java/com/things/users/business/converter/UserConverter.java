@@ -1,22 +1,23 @@
 package com.things.users.business.converter;
 
 
-import com.things.users.business.dto.UserDTO;
+import com.things.users.business.dto.UserRequestDTO;
+import com.things.users.business.dto.UserResponseDTO;
 import com.things.users.infrastructure.entities.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserConverter {
 
-    static public UserDTO fromUserEntityToUserDTO(UserEntity userEntity) {
-        return UserDTO.builder()
+    static public UserResponseDTO fromUserEntityToUserDTO(UserEntity userEntity) {
+        return UserResponseDTO.builder()
                 .firstName(userEntity.getFirstName())
                 .lastName(userEntity.getLastName())
                 .email(userEntity.getEmail())
                 .build();
     }
 
-    static public UserEntity fromUserDTOToUserEntity(UserDTO userDTO) {
+    static public UserEntity fromUserDTOToUserEntity(UserRequestDTO userDTO) {
         return UserEntity.builder()
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())

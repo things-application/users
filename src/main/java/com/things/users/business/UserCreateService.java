@@ -2,7 +2,8 @@ package com.things.users.business;
 
 
 import com.things.users.business.converter.UserConverter;
-import com.things.users.business.dto.UserDTO;
+import com.things.users.business.dto.UserRequestDTO;
+import com.things.users.business.dto.UserResponseDTO;
 import com.things.users.infrastructure.entities.UserEntity;
 import com.things.users.infrastructure.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class UserCreateService {
     private final UserRepository userRepository;
 
 
-    public Optional<UserDTO> execute (UserDTO userDTO){
+    public Optional<UserResponseDTO> execute (UserRequestDTO userDTO){
 
         UserEntity user = UserConverter.fromUserDTOToUserEntity(userDTO);
 
