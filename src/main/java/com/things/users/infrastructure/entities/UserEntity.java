@@ -1,17 +1,14 @@
 package com.things.users.infrastructure.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
+
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -38,4 +35,11 @@ public class UserEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "create_at", nullable = false, updatable = false)
+        private LocalDateTime createAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createAt = LocalDateTime.now();
+    }
 }
