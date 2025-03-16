@@ -2,7 +2,9 @@ package com.things.users.controller;
 
 
 import com.things.users.business.UserCreateService;
-import com.things.users.business.dto.UserDTO;
+import com.things.users.business.dto.UserRequestDTO;
+import com.things.users.business.dto.UserResponseDTO;
+import com.things.users.infrastructure.expection.ConflictException;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
@@ -18,8 +20,8 @@ public class UserController {
 
     public final UserCreateService userCreateService;
 
-    @PostMapping("/create")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+    @PostMapping
+    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO userDTO) throws ConflictException {
         return ResponseEntity.of(userCreateService.execute(userDTO));
     }
 }
