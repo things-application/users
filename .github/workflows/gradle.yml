@@ -16,11 +16,11 @@ jobs:
 
     services:
       postgres:
-        image: postgres:15
+        image: postgres:16
         env:
-          POSTGRES_DB: test_db
-          POSTGRES_USER: test_user
-          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: users
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
         ports:
           - 5432:5432
         options: >-
@@ -60,6 +60,6 @@ jobs:
         run: ./gradlew test -Dspring.profiles.active=test
 
         env:
-          DB_URL: jdbc:postgresql://localhost:5432/test_db
-          DB_USERNAME: test_user
-          DB_PASSWORD: test_password
+          DB_URL: jdbc:postgresql://localhost:5432/users
+          DB_USERNAME: admin
+          DB_PASSWORD: admin
