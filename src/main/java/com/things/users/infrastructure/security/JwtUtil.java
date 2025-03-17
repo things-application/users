@@ -1,14 +1,15 @@
 package com.things.users.infrastructure.security;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
+@Slf4j
 @Service
 public class JwtUtil {
 
@@ -29,10 +30,11 @@ public class JwtUtil {
 
     // Extrai as claims do token JWT (informações adicionais do token)
     public Claims extractClaims(String token) {
+        String jwtToken = token.trim();
         return Jwts.parser()
                 .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8))) // Define a chave secreta para validar a assinatura do token
                 .build()
-                .parseClaimsJws(token) // Analisa o token JWT e obtém as claims
+                .parseClaimsJws(jwtToken) // Analisa o token JWT e obtém as claims
                 .getBody(); // Retorna o corpo das claims
     }
 

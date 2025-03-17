@@ -17,7 +17,9 @@ public class UserGetByEmailService {
     private final UserRepository userRepository;
 
     public Optional<UserResponseDTO> execute(String token, String emailIntended) throws UnauthorizedAccessException {
-        return Optional.ofNullable(Optional.ofNullable(jwtUtil.extrairEmailToken(token))
+        var jwtToken = token.substring(7);
+        String extractedUsername = jwtUtil.extractClaims(jwtToken).getSubject();
+        return Optional.ofNullable(Optional.ofNullable(extractedUsername    )
                 .filter(emailIntended::equals)
                 .flatMap(userRepository::findByEmail)
                 .map(UserConverter::fromUserEntityToUserDTO)
