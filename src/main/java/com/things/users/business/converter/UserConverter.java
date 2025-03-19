@@ -13,6 +13,7 @@ public class UserConverter {
         return UserResponseDTO.builder()
                 .firstName(userEntity.getFirstName())
                 .lastName(userEntity.getLastName())
+                .password(userEntity.getPassword())
                 .email(userEntity.getEmail())
                 .createAt(userEntity.getCreateAt())
                 .build();
