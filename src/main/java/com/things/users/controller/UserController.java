@@ -28,8 +28,8 @@ public class UserController {
     }
 
 
-    @GetMapping("/{email}")
-    public ResponseEntity<Optional<UserResponseDTO>> getUserByEmail(@RequestHeader("Authorization") String token, @PathVariable String email) throws UnauthorizedAccessException {
+    @GetMapping
+    public ResponseEntity<Optional<UserResponseDTO>> getUserByEmail(@RequestHeader("Authorization") String token, @RequestParam String email) throws UnauthorizedAccessException {
         return ResponseEntity.ok(userGetByEmailService.execute(token, email));
     }
 }
